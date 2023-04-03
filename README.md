@@ -35,7 +35,7 @@ for _, v := range words.Slice {
 **Removing and returning the most recently added value**
 
 ```go
-word := words.Pop() // word == "there"
+word, err := words.Pop() // word == "there"
 ```
 
 **Getting length and capacity**
