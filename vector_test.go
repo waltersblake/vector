@@ -2,10 +2,6 @@ package vector
 
 import "testing"
 
-func TestMain(m *testing.M) {
-
-}
-
 func TestPush(t *testing.T) {
 	vecInt := New[int](0, 100)
 	vecString := New[string](0, 10)
@@ -30,4 +26,26 @@ func TestPush(t *testing.T) {
 		t.Errorf("int vector should have a size of 6 but has a size of %d", vecInt.Size())
 	}
 
+}
+
+func TestPop(t *testing.T) {
+	words := New[string](0, 10)
+	words.Push("Hello", "there")
+	result, err := words.Pop()
+	if err != nil {
+		t.Fatalf("error popping word from slice")
+	}
+	if result != "there" {
+		t.Errorf("word should be \"there\", is %s", result)
+	}
+
+}
+
+func TestShrink(t *testing.T) {
+	numbers := New[float64](0, 15)
+	numbers.Push(0.25, 3.14, 7.8, 16.8345)
+	numbers.Shrink()
+	if numbers.Capacity() != 4 {
+		t.Errorf("capacity after shrinking should be 4, but is %d", numbers.Capacity())
+	}
 }
